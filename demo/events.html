@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FrostUI AuthCodeInput Methods</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui.css">
-    <script src="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui-bundle.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@2.2.3/dist/frost-ui.css">
+    <script src="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@2.2.3/dist/frost-ui-bundle.js"></script>
     <script src="../dist/frost-ui-authcodeinput.js"></script>
 </head>
 
@@ -23,19 +23,20 @@
         </div>
     </div>
     <script>
-        const authEvents = dom.findOne('#authEvents');
-        const events = dom.findOne('#events');
+        const authEvents = $.findOne('#authEvents');
+        const events = $.findOne('#events');
 
         UI.AuthCodeInput.init(authEvents);
 
-        dom.addEvent(authEvents, 'change.ui.authcodeinput', e => {
-            const div = dom.create('div', {
+        $.addEvent(authEvents, 'change.ui.authcodeinput', e => {
+            console.log(e);
+            const div = $.create('div', {
                 html: `<small>"${e.type}" event triggered</small>`
             });
-            dom.append(events, div);
+            $.append(events, div);
 
-            const scrollHeight = dom.height(events, DOM.SCROLL_BOX);
-            dom.setScrollY(events, scrollHeight);
+            const scrollHeight = $.height(events, { boxSize: $.SCROLL_BOX });
+            $.setScrollY(events, scrollHeight);
         });
     </script>
 </body>

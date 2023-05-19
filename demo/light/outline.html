@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FrostUI AuthCodeInput</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui.css">
-    <script src="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui-bundle.js"></script>
-    <script src="../dist/frost-ui-authcodeinput.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@2.2.3/dist/frost-ui.css">
+    <script src="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@2.2.3/dist/frost-ui-bundle.js"></script>
+    <script src="../../dist/frost-ui-authcodeinput.js"></script>
 </head>
 
 <body>
@@ -37,6 +37,12 @@
             </div>
         </div>
         <div class="mb-4">
+            <label for="authInitial">Initial Value</label>
+            <div style="width: 350px;">
+                <input id="authInitial" type="text" value="123456" />
+            </div>
+        </div>
+        <div class="mb-4">
             <form id="autoSubmit">
                 <label for="authAutoSubmit">Auto Submit</label>
                 <div style="width: 350px;">
@@ -47,20 +53,22 @@
     </div>
     </div>
     <script>
-        const authDefault = dom.findOne('#authDefault');
-        const authLength = dom.findOne('#authLength');
-        const authRegExp = dom.findOne('#authRegExp');
-        const authDisabled = dom.findOne('#authDisabled');
-        const authAutoSubmit = dom.findOne('#authAutoSubmit');
-        const autoSubmit = dom.findOne('#autoSubmit');
+        const authDefault = $.findOne('#authDefault');
+        const authLength = $.findOne('#authLength');
+        const authRegExp = $.findOne('#authRegExp');
+        const authDisabled = $.findOne('#authDisabled');
+        const authInitial = $.findOne('#authInitial');
+        const authAutoSubmit = $.findOne('#authAutoSubmit');
+        const autoSubmit = $.findOne('#autoSubmit');
 
         UI.AuthCodeInput.init(authDefault);
         UI.AuthCodeInput.init(authLength);
         UI.AuthCodeInput.init(authRegExp);
         UI.AuthCodeInput.init(authDisabled);
+        UI.AuthCodeInput.init(authInitial);
         UI.AuthCodeInput.init(authAutoSubmit);
 
-        dom.addEvent(autoSubmit, 'submit', e => {
+        $.addEvent(autoSubmit, 'submit', e => {
             window.alert('Form submitted');
             return false;
         });

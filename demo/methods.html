@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FrostUI AuthCodeInput Methods</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui.css">
-    <script src="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui-bundle.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@2.2.3/dist/frost-ui.css">
+    <script src="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@2.2.3/dist/frost-ui-bundle.js"></script>
     <script src="../dist/frost-ui-authcodeinput.js"></script>
 </head>
 
@@ -29,41 +29,55 @@
             </div>
         </div>
         <div class="mt-1">
-            <button class="btn btn-secondary ripple mb-0" id="authGetValue" type="button">Get Value</button>
+            <div class="btn-group">
+                <button class="btn btn-secondary ripple mb-0" id="authGetValue" type="button">Get Value</button>
+                <button class="btn btn-secondary ripple mb-0" id="authSetValue" type="button">Set Value</button>
+                <button class="btn btn-secondary ripple mb-0" id="authClear" type="button">Clear</button>
+            </div>
         </div>
         <samp id="output"></samp>
     </div>
     <script>
-        const authDefault = dom.findOne('#authDefault');
-        const authInit = dom.findOne('#authInit');
-        const authDispose = dom.findOne('#authDispose');
-        const authEnable = dom.findOne('#authEnable');
-        const authDisable = dom.findOne('#authDisable');
-        const authGetValue = dom.findOne('#authGetValue');
-        const output = dom.findOne('#output');
+        const authDefault = $.findOne('#authDefault');
+        const authInit = $.findOne('#authInit');
+        const authDispose = $.findOne('#authDispose');
+        const authEnable = $.findOne('#authEnable');
+        const authDisable = $.findOne('#authDisable');
+        const authGetValue = $.findOne('#authGetValue');
+        const authSetValue = $.findOne('#authSetValue');
+        const authClear = $.findOne('#authClear');
+        const output = $.findOne('#output');
 
-        dom.addEvent(authInit, 'click', e => {
+        $.addEvent(authInit, 'click', e => {
             UI.AuthCodeInput.init(authDefault);
         });
 
-        dom.addEvent(authDispose, 'click', e => {
+        $.addEvent(authDispose, 'click', e => {
             UI.AuthCodeInput.init(authDefault).dispose();
         });
 
-        dom.addEvent(authEnable, 'click', e => {
+        $.addEvent(authEnable, 'click', e => {
             UI.AuthCodeInput.init(authDefault).enable();
         });
 
-        dom.addEvent(authDisable, 'click', e => {
+        $.addEvent(authDisable, 'click', e => {
             UI.AuthCodeInput.init(authDefault).disable();
         });
 
-        dom.addEvent(authGetValue, 'click', e => {
+        $.addEvent(authGetValue, 'click', e => {
             const value = UI.AuthCodeInput.init(authDefault).getValue();
-            dom.setText(output, `Value: ${value}`);
+            $.setText(output, `Value: ${value}`);
         });
 
-        dom.triggerEvent(authInit, 'click');
+        $.addEvent(authSetValue, 'click', e => {
+            UI.AuthCodeInput.init(authDefault).setValue('123456');
+        });
+
+        $.addEvent(authClear, 'click', e => {
+            UI.AuthCodeInput.init(authDefault).clear();
+        });
+
+        $.triggerEvent(authInit, 'click');
     </script>
 </body>
 
