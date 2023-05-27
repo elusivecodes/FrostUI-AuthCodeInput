@@ -7,11 +7,11 @@ export function _refresh() {
     const chars = $.getValue(this._node).split('');
 
     for (const input of this._inputs) {
-        let char = chars.shift();
+        let char;
 
-        while (char && !char.match(this._regExp)) {
+        do {
             char = chars.shift();
-        }
+        } while (char && !char.match(this._regExp));
 
         $.setValue(input, char || '');
     }
@@ -37,6 +37,16 @@ export function _updateValue() {
     const newValue = this._inputs
         .map((node) => $.getValue(node))
         .join('');
+
+    const lastIndex = this._inputs.findLastIndex((input) => $.getValue(input));
+
+    for (const [index, input] of this._inputs.entries()) {
+        if (index && index > lastIndex + 1) {
+            $.setAttribute(input, { tabindex: -1 });
+        } else {
+            $.removeAttribute(input, 'tabindex');
+        }
+    }
 
     if (newValue === this.getValue()) {
         return;

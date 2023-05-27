@@ -12,37 +12,34 @@ export function _events() {
     $.addEventDelegate(this._container, 'focusin.ui.authcodeinput', 'input', (e) => {
         const target = e.currentTarget;
         const targetIndex = this._inputs.indexOf(target);
+        const lastIndex = this._inputs.findLastIndex((input) => $.getValue(input));
 
-        const prevInput = this._inputs.find((_, index) => index === targetIndex - 1);
-
-        if (prevInput && !$.getValue(prevInput)) {
-            $.focus(prevInput);
-            return;
+        if (targetIndex > lastIndex + 1 && lastIndex < this._inputs.length) {
+            $.focus(this._inputs[lastIndex + 1]);
+        } else {
+            $.select(target);
         }
-
-        $.select(target);
     });
 
     $.addEventDelegate(this._container, 'input.ui.authcodeinput', 'input', (e) => {
         const target = e.currentTarget;
-        const value = $.getValue(target);
+        let value = $.getValue(target);
+
+        if (value && !value.match(this._regExp)) {
+            value = '';
+            $.setValue(target, value);
+        }
+
+        this._updateValue();
 
         if (!value) {
             return;
         }
 
-        if (!value.match(this._regExp)) {
-            $.setValue(target, '');
-            return;
-        }
-
-        this._updateValue();
-
         const targetIndex = this._inputs.indexOf(target);
-        const nextInput = this._inputs.find((input, index) => index > targetIndex || !$.getValue(input));
 
-        if (nextInput) {
-            $.focus(nextInput);
+        if (targetIndex < this._inputs.length) {
+            $.focus(this._inputs[targetIndex + 1]);
         }
     });
 
@@ -52,17 +49,13 @@ export function _events() {
 
         switch (e.code) {
             case 'ArrowLeft':
-                const prevInput = this._inputs.find((_, index) => index === targetIndex - 1);
-
-                if (prevInput) {
-                    $.focus(prevInput);
+                if (targetIndex > 0) {
+                    $.focus(this._inputs[targetIndex - 1]);
                 }
                 break;
             case 'ArrowRight':
-                const nextInput = this._inputs.find((_, index) => index === targetIndex + 1);
-
-                if (nextInput && $.getValue(target)) {
-                    $.focus(nextInput);
+                if (targetIndex < this._inputs.length) {
+                    $.focus(this._inputs[targetIndex + 1]);
                 }
                 break;
             case 'Backspace':
@@ -70,13 +63,9 @@ export function _events() {
                     $.setValue(target, '');
 
                     this._updateValue();
-                } else {
-                    const prevInput = this._inputs.find((_, index) => index === targetIndex - 1);
-
-                    if (prevInput) {
-                        $.setValue(prevInput, '');
-                        $.focus(prevInput);
-                    }
+                } else if (targetIndex > 0) {
+                    $.setValue(this._inputs[targetIndex - 1], '');
+                    $.focus(this._inputs[targetIndex - 1]);
                 }
                 break;
             default:
