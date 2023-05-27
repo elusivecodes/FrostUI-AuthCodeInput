@@ -22,7 +22,6 @@ It is built on top of the [FrostUI](https://github.com/elusivecodes/FrostUI) lib
 
 ```html
 <link rel="stylesheet" href="/path/to/frost-ui.min.css" />
-<link rel="stylesheet" href="/path/to/frost-ui-authcodeinput.min.css" />
 ```
 
 **JS**
