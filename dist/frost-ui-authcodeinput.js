@@ -263,11 +263,13 @@
                         this.constructor.classes.input,
                     ],
                     attributes: {
-                        type: 'text',
-                        required: true,
-                        maxlength: 1,
-                        size: 1,
-                        pattern: this._options.regExp,
+                        'type': 'text',
+                        'required': true,
+                        'maxlength': 1,
+                        'size': 1,
+                        'pattern': this._options.regExp,
+                        'autocomplete': 'off',
+                        'aria-label': this._options.getAriaLabel(i + j + 1),
                     },
                 });
 
@@ -300,6 +302,7 @@
         length: [3, 3],
         regExp: '[0-9]',
         autoSubmit: false,
+        getAriaLabel: (i) => `Character ${i}`,
     };
 
     // AuthCodeInput classes

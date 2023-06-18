@@ -29,11 +29,13 @@ export function _render() {
                     this.constructor.classes.input,
                 ],
                 attributes: {
-                    type: 'text',
-                    required: true,
-                    maxlength: 1,
-                    size: 1,
-                    pattern: this._options.regExp,
+                    'type': 'text',
+                    'required': true,
+                    'maxlength': 1,
+                    'size': 1,
+                    'pattern': this._options.regExp,
+                    'autocomplete': 'off',
+                    'aria-label': this._options.getAriaLabel(i + j + 1),
                 },
             });
 

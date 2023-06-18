@@ -10,6 +10,7 @@ AuthCodeInput.defaults = {
     length: [3, 3],
     regExp: '[0-9]',
     autoSubmit: false,
+    getAriaLabel: (i) => `Character ${i}`,
 };
 
 // AuthCodeInput classes
