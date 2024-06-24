@@ -1,6 +1,6 @@
 {
     "name": "@fr0st/ui-authcodeinput",
-    "version": "2.0.13",
+    "version": "2.0.14",
     "description": "FrostUI-AuthCodeInput is a free, open-source Auth Code Input component for Javascript.",
     "keywords": [
         "ui",
@@ -24,9 +24,7 @@
         "src"
     ],
     "scripts": {
-        "build": "npm run js",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "js": "npm run js-compile && npm run js-minify",
+        "build": "npm run js-compile && npm run js-minify",
         "js-compile": "rollup --config",
         "js-lint": "eslint",
         "js-minify": "terser --compress passes=2 --mangle --source-map \"content=dist/frost-ui-authcodeinput.js.map\" --output dist/frost-ui-authcodeinput.min.js dist/frost-ui-authcodeinput.js"
