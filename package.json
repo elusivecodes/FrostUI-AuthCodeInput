@@ -1,6 +1,6 @@
 {
     "name": "@fr0st/ui-authcodeinput",
-    "version": "2.0.12",
+    "version": "2.0.13",
     "description": "FrostUI-AuthCodeInput is a free, open-source Auth Code Input component for Javascript.",
     "keywords": [
         "ui",
@@ -19,8 +19,8 @@
     "type": "module",
     "files": [
         "dist",
-        "/LICENSE",
-        "/README.md",
+        "LICENSE",
+        "README.md",
         "src"
     ],
     "scripts": {
